@@ -24,7 +24,7 @@ public class locatorsHomePage {
     // Поле ввода номера заказа
     public  By locatorInputStatusOrderHederHomePage = By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/div/input");
     // Кнопка "Go" проверка статуса заказа
-    public  By locatorButtonGoStatusOrderHederHomePage = By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/button");;
+    public  By locatorButtonGoStatusOrderHederHomePage = By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/button");
 
     // Заголовок страницы
     public  By locatorHeadlineHomePage = By.className("Home_Header__iJKdX");
@@ -40,7 +40,7 @@ public class locatorsHomePage {
     public  By locatorScrollDownHomePage = By.cssSelector("#root > div > div > div.Home_FirstPart__3g6vG > div.Home_ArrowDown__fnDme.Home_Animated__17o7s.Home_Bounce__O19_v");
 
     // Общее описание модели самоката
-    public  By locatorСharacteristicsSamocatHomePage = By.className("Home_Table__2kPxP");
+    public  By locatorCharacteristicsSamocatHomePage = By.className("Home_Table__2kPxP");
     // Модель самоката
     public  By locatorModelSamocatHomePage = By.xpath(".//div[@class = 'Home_Column__xlKDK' and contains(text(), 'Модель Toxic PRO')]");
     // Текс "Максимальная скорость" самоката
