@@ -1,6 +1,7 @@
 package locatorsPageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pachekageLocatorsHome.locatorsHomePage;
@@ -64,9 +65,12 @@ public class homePage {
 
     // Вопросы о важном. Номер 1
     private final By locatorQuestionOneHomePage =  By.id("accordion__heading-0");
+
     //Клик по вопросу номер 1
-    public void clickQuestionOneHomePage () {
-        driver.findElement(locatorQuestionOneHomePage).click();
+    public void clickQuestionOneHomePage() {
+        WebElement questionElement = driver.findElement(locatorQuestionOneHomePage);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
+        questionElement.click();
     }
     // получение текста вопроса номер 1
     public String textQuestionOneHomePage() {
@@ -74,7 +78,7 @@ public class homePage {
         return element.getText();
     }
     // Ответ на 1 вопрос
-    private final By locatorAnswerOneHomePage = By.id("accordion__panel-0");
+    private final By locatorAnswerOneHomePage = By.xpath(".//*[@class = 'accordion__panel']");
     // Получение текста ответа номер 1
     public String textAnswerOneHomePage() {
         WebElement element = driver.findElement(locatorAnswerOneHomePage);
