@@ -15,32 +15,28 @@ import static org.junit.Assert.assertTrue;
 public class testHomePage {
     private ChromeDriver driver;
 
-
+// Тест Вопросов и ответов
     @Test public void testFaq1() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver.get("https://qa-scooter.praktikum-services.ru/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
         homePage homePage = new homePage(driver);
-        String currentWindowHandle = driver.getWindowHandle();
 
-        homePage.clickQuestionOneHomePage();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("accordion__panel")));
-        String text = homePage.textAnswerOneHomePage();
+
+        homePage.clickQuestionEightHomePage();
+
+        String text = homePage.textAnswerEightHomePage();
         System.out.println(text);
-        String expectedText = "Сутки — 400 рублей. Оплата курьеру — наличными или картой.";
+        String expectedText = "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
 
-        if (text.equals(expectedText)) {
-            System.out.println("Тексты совпадают");
-        } else {
-            System.out.println("Тексты не совпадают");
-        }
+        assertEquals("Текст не совпадает",expectedText, text);
 
     }
 
-
+//Тест лого Яндекс
     @Test
     public void testLogoYandex() {
         ChromeOptions options = new ChromeOptions();
@@ -67,7 +63,7 @@ public class testHomePage {
 
     }
 
-
+// Тест лого Самокат
     @Test
     public void testLogoSamocat() {
         ChromeOptions options = new ChromeOptions();
@@ -83,4 +79,38 @@ public class testHomePage {
         String actualUrl = driver.getCurrentUrl();
         assertEquals("Ожидается, что после клика вернёмся на главную страницу",expectedUrl, actualUrl);
     }
+
+// Тест не верного заказ
+
+@Test
+public void testFailedOrderStatus() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+    driver = new ChromeDriver(options);
+    driver.get("https://qa-scooter.praktikum-services.ru/");
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    homePage homePage = new homePage(driver);
+
+    homePage.clickButtonStatusOrder();
+    homePage.sendNumberOrderStatus("Не существующий номер ");
+    homePage.clickButtonGoOrderStatus();
+
+    // Задержка для загрузки страницы, картинка с нот фоунд открывается и при верном номере заказа.
+    // И по этому тест проходит проверку для верного заказа.
+    try {
+        Thread.sleep(3000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    driver.findElement(By.className("Track_NotFound__6oaoY"));
+
+
 }
+
+
+
+
+
+
+}
+
