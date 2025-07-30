@@ -12,11 +12,11 @@ import java.time.Duration;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class testHomePage {
+public class TestHomePage {
     private ChromeDriver driver;
 
 // Тест Вопросов и ответов
-    @Test public void testFaq1() {
+    @Test public void testFaq1(/*string number, string expectedText*/) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
@@ -24,14 +24,10 @@ public class testHomePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
         homePage homePage = new homePage(driver);
-
-
-        homePage.clickQuestionEightHomePage();
-
+        homePage.clickQuestionEight();
         String text = homePage.textAnswerEightHomePage();
         System.out.println(text);
         String expectedText = "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
-
         assertEquals("Текст не совпадает",expectedText, text);
 
     }
@@ -45,18 +41,23 @@ public class testHomePage {
         driver.get("https://qa-scooter.praktikum-services.ru/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
-
         homePage homePage = new homePage(driver);
         String currentWindowHandle = driver.getWindowHandle();
         homePage.clickOnLogoYandex();
         wait.until(webDriver -> webDriver.getWindowHandles().size() > 1);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         for (String handle : driver.getWindowHandles()) {
             if (!handle.equals(currentWindowHandle)) {
                 driver.switchTo().window(handle);
                 break;
             }
         }
-        assertEquals("Открылось что-то не то","yandex.ru", driver.getCurrentUrl());
+        assertEquals("Открылось что-то не то","https://yandex.ru", driver.getCurrentUrl());
 
 
 
@@ -70,10 +71,8 @@ public class testHomePage {
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver.get("https://qa-scooter.praktikum-services.ru/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         homePage homePage = new homePage(driver);
-
-        homePage.clickOnButtonOrderHederHomePage();
+        homePage.clickOnButtonOrderHeder();
         homePage.clickOnLogoSamocat();
         String expectedUrl = "https://qa-scooter.praktikum-services.ru/";
         String actualUrl = driver.getCurrentUrl();
@@ -88,27 +87,32 @@ public void testFailedOrderStatus() {
     options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
     driver = new ChromeDriver(options);
     driver.get("https://qa-scooter.praktikum-services.ru/");
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    homePage homePage = new homePage(driver);
 
+    homePage homePage = new homePage(driver);
     homePage.clickButtonStatusOrder();
     homePage.sendNumberOrderStatus("Не существующий номер ");
     homePage.clickButtonGoOrderStatus();
 
     // Задержка для загрузки страницы, картинка с нот фоунд открывается и при верном номере заказа.
     // И по этому тест проходит проверку для верного заказа.
+
     try {
-        Thread.sleep(3000);
+        Thread.sleep(2000);
     } catch (InterruptedException e) {
-        e.printStackTrace();
+        throw new RuntimeException(e);
     }
+
     driver.findElement(By.className("Track_NotFound__6oaoY"));
 
 
 }
 
 
-
+    @After
+    public void teardown() {
+        // Закрой браузер
+        driver.quit();
+    }
 
 
 

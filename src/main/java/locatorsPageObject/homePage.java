@@ -18,241 +18,241 @@ public class homePage {
     }
 
     // Логотип Яндекс
-    private final By locatorLogoYandexHomePage = By.className("Header_LogoYandex__3TSOI");
+    private final By locatorLogoYandex = By.className("Header_LogoYandex__3TSOI");
     // Клик по лого Яндекс
     public void clickOnLogoYandex() {
-        driver.findElement(locatorLogoYandexHomePage).click();
+        driver.findElement(locatorLogoYandex).click();
     }
 
     // Логотип Самокат
-    private final By locatorLogoSamocatHomePage = By.cssSelector("html img[alt='Scooter']");
+    private final By locatorLogoSamocat = By.cssSelector("html img[alt='Scooter']");
     // Клик по лого Самокат
     public void clickOnLogoSamocat() {
-        driver.findElement(locatorLogoSamocatHomePage).click();
+        driver.findElement(locatorLogoSamocat).click();
     }
 
     // Кнопка Заказать в хедере сверху справа
-    private final By locatorButtonOrderHederHomePage = By.xpath(".//div[@class = 'Header_Nav__AGCXC']/button[@class = 'Button_Button__ra12g']");
+    private final By locatorButtonOrderHeder = By.xpath(".//div[@class = 'Header_Nav__AGCXC']/button[@class = 'Button_Button__ra12g']");
     // Клик по верхней кнопке Заказать
-    public void clickOnButtonOrderHederHomePage() {
-        driver.findElement(locatorButtonOrderHederHomePage).click();
+    public void clickOnButtonOrderHeder() {
+        driver.findElement(locatorButtonOrderHeder).click();
     }
 
     // Кнопка Заказать по центру
-    private final By locatorButtonOrderDownHomePage =  By.xpath(".//div[@class = 'Home_FinishButton__1_cWm]/button");
+    private final By locatorButtonOrderDown =  By.xpath(".//div[@class = 'Home_FinishButton__1_cWm']/button");
     // Клик по кнопке заказать по центру
-    public void clickButtonOrderDownHomePage () {
-        WebElement questionElement = driver.findElement(locatorButtonOrderDownHomePage);
+    public void clickButtonOrderDown() {
+        WebElement questionElement = driver.findElement(locatorButtonOrderDown);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
 
     //Статус заказа
-    private final By locatorButtonStatusOrderHederHomePage =  By.className("Header_Link__1TAG7");
+    private final By locatorButtonStatusOrderHeder =  By.className("Header_Link__1TAG7");
     // Клик по статусу заказа
     public void clickButtonStatusOrder(){
-        driver.findElement(locatorButtonStatusOrderHederHomePage).click();
+        driver.findElement(locatorButtonStatusOrderHeder).click();
     }
     // Поле ввода номера заказа
-    private final By locatorInputStatusOrderHederHomePage =  By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/div/input");
+    private final By locatorInputStatusOrderHeder =  By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/div/input");
     // Ввод номера заказ
     public void sendNumberOrderStatus(String orderNumber) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorInputStatusOrderHederHomePage);
+        WebElement element = driver.findElement(locatorInputStatusOrderHeder);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/div/input")));
         element.sendKeys(orderNumber);
     }
     // Кнопка GO для проверки статуса заказ
-    private final By locatorButtonGoStatusOrderHederHomePage = By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/button");
+    private final By locatorButtonGoStatusOrderHeder = By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/button");
     // Клик по GO
     public void clickButtonGoOrderStatus () {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorButtonGoStatusOrderHederHomePage);
+        WebElement element = driver.findElement(locatorButtonGoStatusOrderHeder);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/button")));
         element.click();
     }
 
     // Вопросы о важном. Номер 1
-    private final By locatorQuestionOneHomePage =  By.id("accordion__heading-0");
+    private final By locatorQuestionOne =  By.id("accordion__heading-0");
 
     //Клик по вопросу номер 1
-    public void clickQuestionOneHomePage() {
-        WebElement questionElement = driver.findElement(locatorQuestionOneHomePage);
+    public void clickQuestionOne() {
+        WebElement questionElement = driver.findElement(locatorQuestionOne);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 1
-    public String textQuestionOneHomePage() {
-        WebElement element = driver.findElement(locatorQuestionOneHomePage);
+    public String textQuestionOne() {
+        WebElement element = driver.findElement(locatorQuestionOne);
         return element.getText();
     }
     // Ответ на 1 вопрос
-    private final By locatorAnswerOneHomePage = By.xpath(".//*[@class = 'accordion__panel']");
+    private final By locatorAnswerOne = By.xpath(".//*[@class = 'accordion__panel']");
     // Получение текста ответа номер 1
-    public String textAnswerOneHomePage() {
+    public String textAnswerOne() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerOneHomePage);
+        WebElement element = driver.findElement(locatorAnswerOne);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("accordion__panel")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 2
-    private final By locatorQuestionTwoHomePage =  By.id("accordion__heading-1");
+    private final By locatorQuestionTwo =  By.id("accordion__heading-1");
     //Клик по вопросу номер 2
-    public void clickQuestionTwoHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionTwoHomePage);
+    public void clickQuestionTwo() {
+        WebElement questionElement = driver.findElement(locatorQuestionTwo);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 2
-    public String textQuestionTwoHomePage() {
-        WebElement element = driver.findElement(locatorQuestionTwoHomePage);
+    public String textQuestionTwo() {
+        WebElement element = driver.findElement(locatorQuestionTwo);
         return element.getText();
     }
     // Ответ на 2 вопрос
-    private final By locatorAnswerTwoHomePage =  By.id("accordion__panel-1");
+    private final By locatorAnswerTwo =  By.id("accordion__panel-1");
     // Получение текста ответа номер 2
-    public String textAnswerTwoHomePage() {
+    public String textAnswerTwo() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerTwoHomePage);
+        WebElement element = driver.findElement(locatorAnswerTwo);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-1")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 3
-    private final By locatorQuestionThreeHomePage = By.id("accordion__heading-2");
+    private final By locatorQuestionThree = By.id("accordion__heading-2");
     //Клик по вопросу номер 3
-    public void clickQuestionThreeHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionThreeHomePage);
+    public void clickQuestionThree() {
+        WebElement questionElement = driver.findElement(locatorQuestionThree);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 3
-    public String textQuestionThreeHomePage() {
-        WebElement element = driver.findElement(locatorQuestionThreeHomePage);
+    public String textQuestionThree() {
+        WebElement element = driver.findElement(locatorQuestionThree);
         return element.getText();
     }
     // Ответ на 3 вопрос
-    private final By locatorAnswerThreeHomePage = By.id("accordion__panel-2");
+    private final By locatorAnswerThree = By.id("accordion__panel-2");
     // Получение текста ответа номер 3
-    public String textAnswerThreeHomePage() {
+    public String textAnswerThree() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerThreeHomePage);
+        WebElement element = driver.findElement(locatorAnswerThree);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-2")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 4
-    private final By locatorQuestionFourHomePage =  By.id("accordion__heading-3");
+    private final By locatorQuestionFour =  By.id("accordion__heading-3");
     //Клик по вопросу номер 4
-    public void clickQuestionFourHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionFourHomePage);
+    public void clickQuestionFour() {
+        WebElement questionElement = driver.findElement(locatorQuestionFour);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 4
-    public String textQuestionFourHomePage() {
-        WebElement element = driver.findElement(locatorQuestionFourHomePage);
+    public String textQuestionFour() {
+        WebElement element = driver.findElement(locatorQuestionFour);
         return element.getText();
     }
     // Ответ на 4 вопрос
-    private final By locatorAnswerFourHomePage =  By.id("accordion__panel-3");
+    private final By locatorAnswerFour =  By.id("accordion__panel-3");
     // Получение текста ответа номер 4
-    public String textAnswerFourHomePage() {
+    public String textAnswerFour() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerFourHomePage);
+        WebElement element = driver.findElement(locatorAnswerFour);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-3")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 5
-    private final By locatorQuestionFiveHomePage = By.id("accordion__heading-4");
+    private final By locatorQuestionFive = By.id("accordion__heading-4");
     //Клик по вопросу номер 5
-    public void clickQuestionFiveHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionFiveHomePage);
+    public void clickQuestionFive() {
+        WebElement questionElement = driver.findElement(locatorQuestionFive);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 5
-    public String textQuestionFiveHomePage() {
-        WebElement element = driver.findElement(locatorQuestionFiveHomePage);
+    public String textQuestionFive() {
+        WebElement element = driver.findElement(locatorQuestionFive);
         return element.getText();
     }
     // Ответ на 5 вопрос
-    private final By locatorAnswerFiveHomePage =  By.id("accordion__panel-4");
+    private final By locatorAnswerFive =  By.id("accordion__panel-4");
     // Получение текста ответа номер 5
-    public String textAnswerFiveHomePage() {
+    public String textAnswerFive() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerFiveHomePage);
+        WebElement element = driver.findElement(locatorAnswerFive);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-4")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 6
-    private final By locatorQuestionSixHomePage = By.id("accordion__heading-5");
+    private final By locatorQuestionSix = By.id("accordion__heading-5");
     //Клик по вопросу номер 6
-    public void clickQuestionSixHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionSixHomePage);
+    public void clickQuestionSix() {
+        WebElement questionElement = driver.findElement(locatorQuestionSix);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 6
-    public String textQuestionSixHomePage() {
-        WebElement element = driver.findElement(locatorQuestionSixHomePage);
+    public String textQuestionSix() {
+        WebElement element = driver.findElement(locatorQuestionSix);
         return element.getText();
     }
     // Ответ на 6 вопрос
-    private final By locatorAnswerSixHomePage = By.id("accordion__panel-5");
+    private final By locatorAnswerSix = By.id("accordion__panel-5");
     // Получение текста ответа номер 6
-    public String textAnswerSixHomePage() {
+    public String textAnswerSix() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerSixHomePage);
+        WebElement element = driver.findElement(locatorAnswerSix);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-5")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 7
-    private final By locatorQuestionSevenHomePage = By.id("accordion__heading-6");
+    private final By locatorQuestionSeven = By.id("accordion__heading-6");
     //Клик по вопросу номер 7
-    public void clickQuestionSevenHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionSevenHomePage);
+    public void clickQuestionSeven() {
+        WebElement questionElement = driver.findElement(locatorQuestionSeven);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 7
-    public String textQuestionSevenHomePage() {
-        WebElement element = driver.findElement(locatorQuestionSevenHomePage);
+    public String textQuestionSeven() {
+        WebElement element = driver.findElement(locatorQuestionSeven);
         return element.getText();
     }
     // Ответ на 7 вопрос
-    private final By locatorAnswerSevenHomePage = By.id("accordion__panel-6");
+    private final By locatorAnswerSeven = By.id("accordion__panel-6");
     // Получение текста ответа номер 7
-    public String textAnswerSevenHomePage() {
+    public String textAnswerSeven() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerSevenHomePage);
+        WebElement element = driver.findElement(locatorAnswerSeven);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-6")));
         return element.getText();
     }
 
     // Вопросы о важном. Номер 8
-    private final By locatorQuestionEightHomePage = By.id("accordion__heading-7");
+    private final By locatorQuestionEight = By.id("accordion__heading-7");
     //Клик по вопросу номер 8
-    public void clickQuestionEightHomePage () {
-        WebElement questionElement = driver.findElement(locatorQuestionEightHomePage);
+    public void clickQuestionEight() {
+        WebElement questionElement = driver.findElement(locatorQuestionEight);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
         questionElement.click();
     }
     // получение текста вопроса номер 8
-    public String textQuestionEightHomePage() {
-        WebElement element = driver.findElement(locatorQuestionEightHomePage);
+    public String textQuestionEight() {
+        WebElement element = driver.findElement(locatorQuestionEight);
         return element.getText();
     }
     // Ответ на 8 вопрос
-    private final By locatorAnswerEightHomePage = By.id("accordion__panel-7");
+    private final By locatorAnswerEight = By.id("accordion__panel-7");
     // Получение текста ответа номер 8
     public String textAnswerEightHomePage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement element = driver.findElement(locatorAnswerEightHomePage);
+        WebElement element = driver.findElement(locatorAnswerEight);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-7")));
         return element.getText();
     }
