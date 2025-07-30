@@ -14,6 +14,7 @@ public class homePage {
 
     private final WebDriver driver;
 
+
     public homePage(WebDriver driver) {
         this.driver = driver;
     }
@@ -81,6 +82,7 @@ public class homePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Header_SearchInput__3YRIQ']/button")));
         element.click();
     }
+
 
     // Вопросы о важном. Номер 1
     private final By locatorQuestionOne = By.id("accordion__heading-0");

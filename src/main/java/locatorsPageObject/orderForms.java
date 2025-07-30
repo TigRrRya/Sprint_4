@@ -161,11 +161,17 @@ public class orderForms {
     private final By locatorButtonStatusOrder = By.xpath(".//div[@class = 'Order_NextButton__1_rCA']/button[@class = 'Button_Button__ra12g Button_Middle__1CSJM']");
 
     // поиск кнопки "Посмотреть статус заказ"
-    public WebElement ButtonStatusOrder() {
+    public WebElement buttonStatusOrder() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Order_ModalHeader__3FDaJ']")));
         return driver.findElement(locatorButtonStatusOrder);
     }
+    public boolean truOrFalseButtonStatusOrder() {
+        WebElement buttonStatusOrder = driver.findElement(locatorButtonStatusOrder);
+
+        return buttonStatusOrder.isDisplayed();
+    }
+
 
 
 }

@@ -5,31 +5,29 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 
 public class TestHomePage {
 
-    private ChromeDriver driver;
+    static ChromeDriver driver;
 
     @Before
     public void startUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 
 
     // Тест Вопросов и ответов
     @Test
-    public void testFaq1(/*string number, string expectedText*/) {
+    public void testQuestionAndAnswerEight() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
@@ -41,6 +39,7 @@ public class TestHomePage {
         assertEquals("Текст не совпадает", expectedText, text);
 
     }
+
 
     //Тест лого Яндекс
     @Test
@@ -81,13 +80,13 @@ public class TestHomePage {
         assertEquals("Ожидается, что после клика вернёмся на главную страницу", expectedUrl, actualUrl);
     }
 
-// Тест не верного заказ
+// Тест не верного заказа
 
     @Test
     public void testFailedOrderStatus() {
         homePage homePage = new homePage(driver);
         homePage.clickButtonStatusOrder();
-        homePage.sendNumberOrderStatus("108574");
+        homePage.sendNumberOrderStatus("1085sdf74");
         homePage.clickButtonGoOrderStatus();
 
         // Задержка для загрузки страницы, картинка с нот фоунд открывается и при верном номере заказа.
@@ -101,17 +100,11 @@ public class TestHomePage {
 
         By imgNotFound = By.xpath(".//div[@class= 'Track_NotFound__6oaoY']/img");
         Assert.assertTrue(driver.findElement(imgNotFound).isDisplayed());
-
-
     }
-
 
     @After
     public void teardown() {
-        // Закрой браузер
         driver.quit();
     }
-
-
 }
 
