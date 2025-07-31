@@ -1,42 +1,25 @@
 import locatorsPageObject.homePage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
 import static org.junit.Assert.assertEquals;
 
 
-public class TestHomePage {
 
+public class TestHomePage {
+    // static FirefoxDriver driver;
     static ChromeDriver driver;
 
     @Before
     public void startUp() {
+        // driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
-    }
-
-
-    // Тест Вопросов и ответов
-    @Test
-    public void testQuestionAndAnswerEight() {
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
-        homePage homePage = new homePage(driver);
-        homePage.clickQuestionEight();
-        String text = homePage.textAnswerEightHomePage();
-        System.out.println(text);
-        String expectedText = "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
-        assertEquals("Текст не совпадает", expectedText, text);
+        homePage.waitHederHomePage(wait);
 
     }
 
@@ -45,8 +28,7 @@ public class TestHomePage {
     @Test
     public void testLogoYandex() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         homePage homePage = new homePage(driver);
         String currentWindowHandle = driver.getWindowHandle();
         homePage.clickOnLogoYandex();
@@ -98,9 +80,11 @@ public class TestHomePage {
             throw new RuntimeException(e);
         }
 
-        By imgNotFound = By.xpath(".//div[@class= 'Track_NotFound__6oaoY']/img");
+        By imgNotFound = locatorsPageObject.homePage.getNotFoundImg();
         Assert.assertTrue(driver.findElement(imgNotFound).isDisplayed());
     }
+
+
 
     @After
     public void teardown() {

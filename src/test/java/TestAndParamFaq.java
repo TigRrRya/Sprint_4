@@ -1,37 +1,30 @@
-
+import locatorsPageObject.homePage;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 
 @RunWith(Parameterized.class)
-public class autotestAndParamFaq {
+public class TestAndParamFaq {
     private static WebDriver driver;
 
     @BeforeClass
     public static void setUp() {
-
+        // driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header_Disclaimer__3VEni")));
-
+        homePage.waitHederHomePage(wait);
     }
 
     private final int number;
     private final String expectedText;
 
-    public autotestAndParamFaq(int number, String expectedText) {
+    public TestAndParamFaq(int number, String expectedText) {
         this.number = number;
         this.expectedText = expectedText;
     }
@@ -50,17 +43,16 @@ public class autotestAndParamFaq {
     }
 
     @Test
-    public void autotestAndParamFaq() {
+    public void autotestAndParamFAQ() {
+        homePage homePage = new homePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        WebElement questionElement = driver.findElement(By.id("accordion__heading-" + (number - 1)));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", questionElement);
-        questionElement.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__panel-" + (number - 1))));
-        String actualText = driver.findElement(By.id("accordion__panel-" + (number - 1))).getText();
+        homePage.scrollAndClickQuestionNumber(wait, number);
+        String actualText = homePage.getTextAnswerNumber(wait, number);
 
         System.out.println(actualText);
         Assert.assertEquals("Текст не совпадает с заданным", expectedText, actualText);
     }
+
 
     @AfterClass
     public static void teardown() {

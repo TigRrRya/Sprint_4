@@ -1,9 +1,7 @@
 package locatorsPageObject;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class orderForms {
@@ -14,8 +12,12 @@ public class orderForms {
         this.driver = driver;
     }
 
+    public static void waitHederOrderForms(WebDriverWait wait) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Header__BZXOb")));
+    }
+
     //Локатор поля Имя
-    private final By locatorInputName = By.xpath(".//input[@class = 'Input_Input__1iN_Z Input_Responsible__1jDKN' and  @placeholder = '* Имя']");
+    public final By locatorInputName = By.xpath(".//input[@class = 'Input_Input__1iN_Z Input_Responsible__1jDKN' and  @placeholder = '* Имя']");
 
     // Ввод в поле Имя
     public void sendName(String Name) {
@@ -23,7 +25,7 @@ public class orderForms {
     }
 
     // Локатор поля Фамилия
-    private final By locatorInputFamilia = By.xpath(".//input[@class = 'Input_Input__1iN_Z Input_Responsible__1jDKN' and  @placeholder = '* Фамилия']");
+    public final By locatorInputFamilia = By.xpath(".//input[@class = 'Input_Input__1iN_Z Input_Responsible__1jDKN' and  @placeholder = '* Фамилия']");
 
     // Ввод в поле Фамилия
     public void sendFamilia(String Familia) {
@@ -31,11 +33,11 @@ public class orderForms {
     }
 
     //Локатор поля Адрес
-    private final By locatorInputAdres = By.xpath(".//input[@class = 'Input_Input__1iN_Z Input_Responsible__1jDKN' and  @placeholder = '* Адрес: куда привезти заказ']");
+    private final By locatorInputAddress = By.xpath(".//input[@class = 'Input_Input__1iN_Z Input_Responsible__1jDKN' and  @placeholder = '* Адрес: куда привезти заказ']");
 
     // Ввод в поле Адрес
-    public void sendAdres(String Adres) {
-        driver.findElement(locatorInputAdres).sendKeys(Adres);
+    public void sendAddress(String address) {
+        driver.findElement(locatorInputAddress).sendKeys(address);
 
     }
 
@@ -53,11 +55,11 @@ public class orderForms {
     }
 
     // Локатор поля Телефон
-    private final By locatorInputTelefon = By.xpath(".//input[@placeholder = '* Телефон: на него позвонит курьер']");
+    private final By locatorInputTelephone = By.xpath(".//input[@placeholder = '* Телефон: на него позвонит курьер']");
 
     // Ввод Телефона
-    public void sendTelefone(String telefone) {
-        driver.findElement(locatorInputTelefon).sendKeys(telefone);
+    public void sendTelephone(String telephone) {
+        driver.findElement(locatorInputTelephone).sendKeys(telephone);
     }
 
     // Локатор кнопки Далее в форме заказа
@@ -71,22 +73,20 @@ public class orderForms {
     // Локатор поля Когда привезти самокат
     private final By locatorInputWhen = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
 
-    // Ввод даты через дд.мм.гггг
+    // Ввод даты через ДД.ММ.ГГГГ
     public void sendDataAndEnter(String data) {
 
         driver.findElement(locatorInputWhen).sendKeys(data);
         driver.findElement(locatorInputWhen).sendKeys(Keys.ENTER);
-
-
     }
 
     // Локатор Срок аренды
-    private final By locatorSrokArend = By.xpath(".//div[@class = 'Dropdown-placeholder']");
+    private final By locatorRentalPeriod = By.xpath(".//div[@class = 'Dropdown-placeholder']");
 
     // Выбор срока аренды в 5 суток
-    public void clickSrokArend(String dey) {
+    public void clickRentalPeriod(String dey) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        driver.findElement(locatorSrokArend).click();
+        driver.findElement(locatorRentalPeriod).click();
         switch (dey) {
             case "1":
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Dropdown-menu']")));
@@ -124,18 +124,18 @@ public class orderForms {
     }
 
     // Локатор черного цвета самоката
-    private final By locatorBlackSamocat = By.xpath(".//label[@for = 'black']");
+    private final By locatorBlackScooter = By.xpath(".//label[@for = 'black']");
 
     // Локатор серого цвета самоката
-    private final By locatorGreySamocat = By.xpath(".//label[@for = 'grey']");
+    private final By locatorGreyScooter = By.xpath(".//label[@for = 'grey']");
 
     // Выбор самоката, по стандарту всегда серый.
-    public void clickColorSamocat(String color) {
+    public void clickColorScooter(String color) {
 
         if (color.equals("Черный")) {
-            driver.findElement(locatorBlackSamocat).click();
+            driver.findElement(locatorBlackScooter).click();
         } else {
-            driver.findElement(locatorGreySamocat).click();
+            driver.findElement(locatorGreyScooter).click();
         }
 
     }
@@ -160,18 +160,15 @@ public class orderForms {
     //Локатор кнопки "Посмотреть статус заказ"
     private final By locatorButtonStatusOrder = By.xpath(".//div[@class = 'Order_NextButton__1_rCA']/button[@class = 'Button_Button__ra12g Button_Middle__1CSJM']");
 
-    // поиск кнопки "Посмотреть статус заказ"
-    public WebElement buttonStatusOrder() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Order_ModalHeader__3FDaJ']")));
-        return driver.findElement(locatorButtonStatusOrder);
-    }
+    // Проверка наличия кнопки Статуса заказа на экране
     public boolean truOrFalseButtonStatusOrder() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Order_NextButton__1_rCA']/button[@class = 'Button_Button__ra12g Button_Middle__1CSJM']")));
         WebElement buttonStatusOrder = driver.findElement(locatorButtonStatusOrder);
 
         return buttonStatusOrder.isDisplayed();
     }
-
 
 
 }
