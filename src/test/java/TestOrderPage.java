@@ -43,7 +43,7 @@ public class TestOrderPage {
 
     @Before
     public void startUp() {
-       // driver = new FirefoxDriver();
+        // driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
 
@@ -52,8 +52,8 @@ public class TestOrderPage {
     @Parameterized.Parameters
     public static Object[][] getTextData() {
         return new Object[][]{
-                {"По центру", "Александр", "Шорин", "Советской 33", "Беговая", "123456789163", "21.10.2025", "7", "Черный"},
-                {"Сверху", "Иван", "Иванов", "Мир 12", "Пуш", "987654321654", "29.12.2025", "3", "Любой"},
+                {"По центру", "Александр", "Шорин", "Советской 33", "Беговая", "123456789163", "21.10.2025", "трое суток", "Черный"},
+                {"Сверху", "Иван", "Иванов", "Мир 12", "Пуш", "987654321654", "29.12.2025", "шестеро суток", "Любой"},
 
 
         };

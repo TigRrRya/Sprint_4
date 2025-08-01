@@ -5,6 +5,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 
@@ -48,8 +49,6 @@ public class TestAndParamFaq {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         homePage.scrollAndClickQuestionNumber(wait, number);
         String actualText = homePage.getTextAnswerNumber(wait, number);
-
-        System.out.println(actualText);
         Assert.assertEquals("Текст не совпадает с заданным", expectedText, actualText);
     }
 

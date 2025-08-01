@@ -1,12 +1,12 @@
 import locatorsPageObject.homePage;
 import org.junit.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import static org.junit.Assert.assertEquals;
 
+import java.time.Duration;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class TestHomePage {
@@ -18,7 +18,7 @@ public class TestHomePage {
         // driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         homePage.waitHederHomePage(wait);
 
     }
@@ -80,10 +80,9 @@ public class TestHomePage {
             throw new RuntimeException(e);
         }
 
-        By imgNotFound = locatorsPageObject.homePage.getNotFoundImg();
-        Assert.assertTrue(driver.findElement(imgNotFound).isDisplayed());
-    }
 
+        Assert.assertTrue(driver.findElement(locatorsPageObject.homePage.locatorNotFound).isDisplayed());
+    }
 
 
     @After
