@@ -147,7 +147,7 @@ public class orderForms {
     public boolean truOrFalseButtonStatusOrder() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class = 'Order_NextButton__1_rCA']/button[@class = 'Button_Button__ra12g Button_Middle__1CSJM']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locatorButtonStatusOrder));
         WebElement buttonStatusOrder = driver.findElement(locatorButtonStatusOrder);
 
         return buttonStatusOrder.isDisplayed();
